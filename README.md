@@ -2,6 +2,7 @@
 
 #### Uhelne
 * cena provozu
+https://www.e-education.psu.edu/eme801/node/530
 * produkce elekt5iny
 * produkce CO_2
   * 980g CO_2/kWh https://www.factcheck.org/2018/03/wind-energys-carbon-footprint/
