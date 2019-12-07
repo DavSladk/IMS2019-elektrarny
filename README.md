@@ -18,3 +18,6 @@ https://www.e-education.psu.edu/eme801/node/530
   * 11g CO_2/kWh https://www.factcheck.org/2018/03/wind-energys-carbon-footprint/
 * produkce elektriny
 * jakakoliv jina informace
+
+### Vykupní cena elektřiny
+* 1200Kč https://www.kurzy.cz/komodity/cena-elektriny-graf-vyvoje-ceny/index.asp?A=5&idk=142&curr=CZK&on=0&unit=&lg=1
