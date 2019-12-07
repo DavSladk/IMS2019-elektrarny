@@ -5,6 +5,7 @@
   * 750Kč/MWh https://www.lazard.com/perspective/lcoe2019/
 * produkce elektriny
   * 44817 GWh v CR za 2018 - 4202 GWh spotrebovano na provoz
+  * průměrná elektrárna v ČR 1504 GWh = 1504000 MWh po odečtení spotřeby na provoz
 * produkce CO_2
   * 870 - 980g CO_2/kWh https://www.factcheck.org/2018/03/wind-energys-carbon-footprint/
   * 740(min) 820(avg) 910(max) jinym clanku
