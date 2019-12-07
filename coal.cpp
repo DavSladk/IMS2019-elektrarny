@@ -8,7 +8,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
-//#include "simlib.h"
+#include "simlib.h"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ void print_help()
 void  parse_params(int argc, char *argv[])
 {
     int opt;
-    while ((opt = getopt (argc, argv, "ywstc")) != -1)
+    while ((opt = getopt (argc, argv, "ywbc")) != -1)
     {
         switch (opt)
         {
@@ -80,36 +80,44 @@ void  parse_params(int argc, char *argv[])
 
 int power_plant()
 {
-    //int time_to_live = Uniform(0, 50);
-    unsigned int elektricity = 0;
-    long int money = 0;
-    unsigned int emissions = 0;
-    int months = 12 * years;
-    for(int i = 0; i < years; i++)
+    int time_to_live = Uniform(1, 50);
+    int el = 0;
+    for(int i = 0; i < time_to_live; i++)
     {
-        //elektricity += Exponential(1504000);
-        elektricity += 1504000;
-        money += elektricity * 450;
-        //  money += elektricity * Normal(450, 100);
-        emissions += elektricity * 820;
-        //emissions += elektricity * Uniform(760, 900);
+        el += Exponential(1504000);
+        //el += 1504000;
         if(i == years)
         {
             break;
         }
-
     }
-
-    cout << "celkové množství vyprodukované elektřiny = " << elektricity / 1000 << "MWh" << endl;
-    cout << "celkov zisk = " << money << "Kč" << endl;
-    cout << "celkové množství CO2 = " << emissions / 1000 << "tun" << endl;
+    return el;
 }
 
 
 int main(int argc, char *argv[]) {
     parse_params(argc, argv);
 
-    power_plant();
+    unsigned int elektricity = 0;
+    long int money = 0;
+    unsigned int emissions = 0;
+    //int months = 12 * years;
+
+    for(int i = 0; i < builded_coal; i++)
+    {
+        elektricity += power_plant();
+    }
+
+
+    //money += elektricity * 450;
+    money += elektricity * Normal(450, 100);
+    //emissions += elektricity * 820;
+    emissions += elektricity * Uniform(760, 900);
+
+
+    cout << "celkové množství vyprodukované elektřiny = " << elektricity / 1000 << "MWh" << endl;
+    cout << "celkov zisk = " << money << "Kč" << endl;
+    cout << "celkové množství CO2 = " << emissions / 1000 << "tun" << endl;
 
     return 0;
 }
