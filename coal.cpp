@@ -12,8 +12,9 @@
 
 using namespace std;
 
+//class elektrarna
 
-unsigned int years = 0; ///doba trvání simulace
+unsigned int years = 0; /// doba trvání simulace
 unsigned int wind = 0; /// počet plánovaných větrných elektráren
 unsigned int coal = 0; /// počet plánovaných uhelných elektráren
 unsigned int builded_coal = 0; ///počet postavených uhelných elektráren
@@ -77,9 +78,38 @@ void  parse_params(int argc, char *argv[])
 }
 
 
+int power_plant()
+{
+    //int time_to_live = Uniform(0, 50);
+    unsigned int elektricity = 0;
+    long int money = 0;
+    unsigned int emissions = 0;
+    int months = 12 * years;
+    for(int i = 0; i < years; i++)
+    {
+        //elektricity += Exponential(1504000);
+        elektricity += 1504000;
+        money += elektricity * 450;
+        //  money += elektricity * Normal(450, 100);
+        emissions += elektricity * 820;
+        //emissions += elektricity * Uniform(760, 900);
+        if(i == years)
+        {
+            break;
+        }
+
+    }
+
+    cout << "celkové množství vyprodukované elektřiny = " << elektricity / 1000 << "MWh" << endl;
+    cout << "celkov zisk = " << money << "Kč" << endl;
+    cout << "celkové množství CO2 = " << emissions / 1000 << "tun" << endl;
+}
+
+
 int main(int argc, char *argv[]) {
     parse_params(argc, argv);
 
+    power_plant();
 
     return 0;
 }
