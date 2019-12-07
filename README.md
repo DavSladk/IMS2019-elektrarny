@@ -1,14 +1,15 @@
 # IMS2019-elektrarny
 
 #### Uhelne
-* cena provozu
-  * 750Kc/MWh
+* cena provozu https://www.e-education.psu.edu/eme801/node/530
+  * 750Kč/MWh https://www.lazard.com/perspective/lcoe2019/
 * produkce elektriny
   * 44817 GWh v CR za 2018 - 4202 GWh spotrebovano na provoz
 * produkce CO_2
-  * 870 - 980g CO_2/kWh v jednom clanku, 740(min) 820(avg) 910(max) v druhym clanku
-* cena produkce 1MWH je 750 Kc
-* funguji po dobu 50 let - vymysleno, ale to nikdo nemusi vedet
+  * 870 - 980g CO_2/kWh https://www.factcheck.org/2018/03/wind-energys-carbon-footprint/
+  * 740(min) 820(avg) 910(max) jinym clanku
+* jakakoliv jina informace
+ * životnost asi 50 let - průměr v ČR
 
 #### Vetrne
 * cena postaveni
@@ -18,9 +19,11 @@
 * CO_2 postaveni
   * 241.85 tun CO_2 v jednom clanku, jine cislo v jinym
 * CO_2 obecne
-  * 11g nebo 14g CO_2/kWh v jendom clanku, 7(min) 11(avg) 56(max) v druhym clanku
+
+  * 11g nebo 14g CO_2/kWh https://www.factcheck.org/2018/03/wind-energys-carbon-footprint/
+  *  7(min) 11(avg) 56(max) jinym clanku
 * 1x - 2x do roka porucha, odstaveni na jeden den
-* zivotnost 20 let
+* zivotnost 20 let https://www.exponent.com/knowledge/alerts/2017/06/wind-turbine-reliability/?pageSize=NaN&pageNum=0&loadAllByPageSize=true
 * velikosti turbin
   * 100 kW
   * 800 kW
@@ -28,5 +31,6 @@
   * 3 MW
   * 3.5 Mw
 
-#### Cena elektriny
-* ke dni 7.12.2019 - 1200 Kc/MWh
+#### Vykupní cena elektřiny
+* ke dni 7.12.2019 - 1200 Kc/MWh https://www.kurzy.cz/komodity/cena-elektriny-graf-vyvoje-ceny/index.asp?A=5&idk=142&curr=CZK&on=0&unit=&lg=1
+

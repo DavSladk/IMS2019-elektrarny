@@ -13,10 +13,10 @@
 using namespace std;
 
 
-unsigned int years = 0;
-unsigned int wind = 0;
-unsigned int coal = 0;
-unsigned int builded_coal = 0;
+unsigned int years = 0; ///doba trvání simulace
+unsigned int wind = 0; /// počet plánovaných větrných elektráren
+unsigned int coal = 0; /// počet plánovaných uhelných elektráren
+unsigned int builded_coal = 0; ///počet postavených uhelných elektráren
 
 void bad_args()
 {
