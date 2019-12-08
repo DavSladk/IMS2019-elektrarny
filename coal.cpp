@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
+#include <cmath>
 #include "simlib.h"
 
 using namespace std;
@@ -80,13 +81,16 @@ void  parse_params(int argc, char *argv[])
 
 int power_plant()
 {
-    int time_to_live = Uniform(1, 50);
+    double d_time_to_live = Uniform(1, 50);
+    int time_to_live = (int)round(d_time_to_live);
     cout << time_to_live << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
 
-        unsigned int e = Exponential(1504);
+        double d_e = Exponential(1504);
+        cout << d_e << endl;
+        unsigned int e = (int)round(d_e);
         cout << e << endl;
         el = el + e;
         cout << el << endl;
@@ -121,10 +125,12 @@ int main(int argc, char *argv[]) {
     cout << elektricity << endl;
 
     //money += elektricity * 450;
-    money = elektricity * Normal(450, 100);
+    double d_money = elektricity * Normal(450, 100);
+    money = (int)round(d_money);
 
     //emissions += elektricity * 820;
-    emissions = elektricity * Uniform(760, 900);
+    double d_emissions = elektricity * Uniform(760, 900);
+    emissions = (int)round(d_emissions);
 
 
 
