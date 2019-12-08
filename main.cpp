@@ -16,9 +16,9 @@
 using namespace std;
 
 
-unsigned int years = 0; /// doba trvání simulace
-unsigned int builded_coal = 0; ///počet postavených uhelných elektráren
-unsigned int wind = 0; /// počet plánovaných větrných elektráren
+int years = 0; /// doba trvání simulace
+int builded_coal = 0; ///počet postavených uhelných elektráren
+int wind = 0; /// počet plánovaných větrných elektráren
 
 
 long long int money = 0;

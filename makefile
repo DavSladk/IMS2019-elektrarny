@@ -2,10 +2,13 @@ COMPILER=g++
 
 FLAGS=-Wall -Wextra -pedantic -std=c++11 -lsimlib -lm
 
-all: coal wind
+.PHONY: run clean
 
-coal: coal.cpp
+main: main.cpp
 	$(COMPILER) -o $@ $< $(FLAGS)
 
-wind: wind.cpp
-	$(COMPILER) -o $@ $< $(FLAGS)
+run:
+	./main
+
+clean:
+	rm -f main
