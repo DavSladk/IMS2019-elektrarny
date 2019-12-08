@@ -81,16 +81,22 @@ void  parse_params(int argc, char *argv[])
 int power_plant()
 {
     int time_to_live = Uniform(1, 50);
+    cout << time_to_live << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
-        el += Exponential(1504000);
+
+        unsigned int e = Exponential(1504);
+        cout << e << endl;
+        el = el + e;
+        cout << el << endl;
         //el += 1504000;
-        if(i == years)
+        if(i == years - 1)
         {
             break;
         }
     }
+    cout << endl;
     return el;
 }
 
@@ -105,19 +111,26 @@ int main(int argc, char *argv[]) {
 
     for(int i = 0; i < builded_coal; i++)
     {
-        elektricity += power_plant();
-    }
+        unsigned int el = power_plant();
+        cout << elektricity << endl;
+        elektricity = elektricity + el;
 
+        cout << elektricity << endl;
+    }
+    cout << endl;
+    cout << elektricity << endl;
 
     //money += elektricity * 450;
-    money += elektricity * Normal(450, 100);
+    money = elektricity * Normal(450, 100);
+
     //emissions += elektricity * 820;
-    emissions += elektricity * Uniform(760, 900);
+    emissions = elektricity * Uniform(760, 900);
 
 
-    cout << "celkové množství vyprodukované elektřiny = " << elektricity / 1000 << "MWh" << endl;
-    cout << "celkov zisk = " << money << "Kč" << endl;
-    cout << "celkové množství CO2 = " << emissions / 1000 << "tun" << endl;
+
+    cout << "celkové množství vyprodukované elektřiny = " << elektricity  << "MWh" << endl;
+    cout << "celkov zisk = " << money / 1000 << "milionu Kč" << endl;
+    cout << "celkové množství CO2 = " << emissions /1000 << "tun" << endl;
 
     return 0;
 }
