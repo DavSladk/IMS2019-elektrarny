@@ -94,7 +94,8 @@ int coal_power_plant()
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
-        if(i == years)
+
+        if(i == years )
         {
             break;
         }
