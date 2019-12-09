@@ -89,12 +89,12 @@ int coal_power_plant()
 {
     double d_time_to_live = Uniform(1, 50);
     int time_to_live = (int)round(d_time_to_live);
-    cout << endl;
-    cout << time_to_live << "Coal power plant TTL" << endl << endl;
+    // cout << endl;
+    // cout << time_to_live << "Coal power plant TTL" << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
-        if(i == years - 1)
+        if(i == years)
         {
             break;
         }
@@ -201,7 +201,7 @@ int main(int argc, char *argv[]) {
     cout << "Total amount of electricity produced by wind turbines = "
          << wind_elektricity << "GWh"<< endl;
     cout << "Total profit of wind turbines = "
-         << wind_money << " tisíc Kc" << endl;
+         << wind_money << " thousand Kc" << endl;
     cout << "Total CO2 produced by wind turbines = "
          <<wind_emissions << "kg" << endl <<endl;
 

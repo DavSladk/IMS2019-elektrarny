@@ -1,6 +1,6 @@
 COMPILER=g++
 
-FLAGS=-Wall -Wextra -pedantic -std=c++11 -lsimlib -lm
+FLAGS= -std=c++11 -lsimlib -lm
 
 .PHONY: run clean
 
