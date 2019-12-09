@@ -8,7 +8,7 @@ main: main.cpp
 	$(COMPILER) -o $@ $< $(FLAGS)
 
 run:
-	./main
+	./main ${ARGS}
 
 clean:
 	rm -f main
