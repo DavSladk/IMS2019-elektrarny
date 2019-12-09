@@ -16,9 +16,9 @@
 using namespace std;
 
 
-unsigned int years = 0; /// doba trvání simulace
-unsigned int builded_coal = 0; ///počet postavených uhelných elektráren
-unsigned int wind = 0; /// počet plánovaných větrných elektráren
+unsigned int years = 0; // time of simulation
+unsigned int builded_coal = 0; // amount of coal power plants
+unsigned int wind = 0; // amount of planned wind turbines
 
 
 long long int money = 0;
@@ -32,21 +32,19 @@ long long int wind_money = 0;
 
 void bad_args()
 {
-    cout << "Parametry byly špatně zadány" <<endl << endl;
+    cout << "Wrong parametrs!" << endl << endl;
 
-    cout <<"Pro nastavení délky simulace zadejte parametr -y a za ním napište číslo udávající počet let" << endl;
-    cout <<"Příklad: -y 50" << endl;
+    cout << "To set time of simulation use -> -y years" << endl;
+    cout << "Example: -y 50" << endl;
 
-    cout <<"Pro nastavení počtu postavených uhelných elektráren zadejte parametr -b " << endl;
-    cout <<"Příklad: -b 1" << endl;
+    cout << "To set initial amount of coal power plants use -> -b amount" << endl;
+    cout << "Example: -b 1" << endl;
 
-    cout <<"Pro nastavení počtu plánovaných větrných elektráren zadejte parametr -w " << endl;
-    cout <<"Příklad: -w 20" << endl;
+    cout << "To set amount of planned wind turbines use -> -w amount" << endl;
+    cout << "Example: -w 20" << endl;
 
     exit(1);
 }
-
-
 
 void  parse_params(int argc, char *argv[])
 {
@@ -92,7 +90,7 @@ int coal_power_plant()
     double d_time_to_live = Uniform(1, 50);
     int time_to_live = (int)round(d_time_to_live);
     cout << endl;
-    cout << time_to_live << "uhelna zivot" << endl << endl;
+    cout << time_to_live << "Coal power plant TTL" << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
@@ -146,7 +144,7 @@ int wind_power_plant(int time_to_end)
 
         double years_hours = 24 * 365;
         double productive_hours = years_hours * 0.26; /// prumerna rocni vyuzitelnost
-        double power_plant_production = productive_hours * 0.03;/// větrná farma = 30 MW
+        double power_plant_production = productive_hours * 0.03;/// vetrna farma = 30 MW
         double d_e = Normal(power_plant_production, 1);
         unsigned int e = (int)round(d_e);
         el = el + e;
@@ -156,7 +154,6 @@ int wind_power_plant(int time_to_end)
 
     return el;
 }
-
 
 void wind_work() {
 
@@ -197,25 +194,23 @@ int main(int argc, char *argv[]) {
     wind_work();
     coal_work();
 
+    cout << "Total amount of produced electricity = " << elektricity << "GWh" << endl;
+    cout << "Total profit = " << money  << " thousand Kc" << endl;
+    cout << "Total amount of CO2 = " << emissions  << "kg" << endl << endl;
 
-    cout << "celkové množství vyprodukované elektřiny = " << elektricity << "GWh" << endl;
-    cout << "celkov zisk = " << money  << " tisíc Kč" << endl;
-    cout << "celkové množství CO2 = " << emissions  << "kg" << endl << endl;
-
-    cout << "celkové množství elektřiny vyprodukované větrnými elektrárnami = "
+    cout << "Total amount of electricity produced by wind turbines = "
          << wind_elektricity << "GWh"<< endl;
-    cout << "celkové zisk větrnými elektrárnami = "
+    cout << "Total profit of wind turbines = "
          << wind_money << " tisíc Kč" << endl;
-    cout << "celkové množství CO2 vyprodukované větrnými elektrárnami = "
+    cout << "Total CO2 produced by wind turbines = "
          <<wind_emissions << "kg" << endl <<endl;
 
-    cout << "celkové množství elektřiny vyprodukované uhelnými elektrárnami = "
+    cout << "Total amount of electricity produced by coal power plants = "
     << elektricity - wind_elektricity << "GWh"<< endl;
-    cout << "celkové zisk uhelnými elektrárnami = "
+    cout << "Total profit of coal power plants = "
     << money - wind_money << " tisíc Kč" << endl;
-    cout << "celkové množství CO2 vyprodukované uhelnými elektrárnami = "
+    cout << "Total CO2 produced by coal power plants = "
     << emissions - wind_emissions << "kg" << endl;
-
 
     return 0;
 }
