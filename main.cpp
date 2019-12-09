@@ -16,19 +16,32 @@
 using namespace std;
 
 
-int years = 0; /// doba trvání simulace
-int builded_coal = 0; ///počet postavených uhelných elektráren
-int wind = 0; /// počet plánovaných větrných elektráren
+unsigned int years = 0; /// doba trvání simulace
+unsigned int builded_coal = 0; ///počet postavených uhelných elektráren
+unsigned int wind = 0; /// počet plánovaných větrných elektráren
 
 
 long long int money = 0;
 unsigned int elektricity = 0;
 unsigned int emissions = 0;
 
+unsigned int wind_elektricity = 0;
+unsigned int wind_emissions = 0;
+long long int wind_money = 0;
+
 
 void bad_args()
 {
-    cout << "Parametry byly špatně zadány" <<endl;
+    cout << "Parametry byly špatně zadány" <<endl << endl;
+
+    cout <<"Pro nastavení délky simulace zadejte parametr -y a za ním napište číslo udávající počet let" << endl;
+    cout <<"Příklad: -y 50" << endl;
+
+    cout <<"Pro nastavení počtu postavených uhelných elektráren zadejte parametr -b " << endl;
+    cout <<"Příklad: -b 1" << endl;
+
+    cout <<"Pro nastavení počtu plánovaných větrných elektráren zadejte parametr -w " << endl;
+    cout <<"Příklad: -w 20" << endl;
 
     exit(1);
 }
@@ -78,7 +91,8 @@ int coal_power_plant()
 {
     double d_time_to_live = Uniform(1, 50);
     int time_to_live = (int)round(d_time_to_live);
-    cout << time_to_live << endl << endl;
+    cout << endl;
+    cout << time_to_live << "uhelna zivot" << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
@@ -89,12 +103,12 @@ int coal_power_plant()
 
         long double d_e = Uniform(1404 , 1604);
         unsigned int e = (int)round(d_e);
-        cout << e << endl;
+
         el = el + e;
-        cout << el << endl;
+
 
     }
-    cout << endl;
+
     return el;
 }
 
@@ -104,22 +118,15 @@ void coal_work() {
     for(int i = 0; i < builded_coal; i++)
     {
         unsigned int el = coal_power_plant();
-        cout << elektricity << endl;
+
         elektricity = elektricity + el;
 
-        cout << elektricity << endl;
     }
-    cout << endl;
-    cout << elektricity << endl;
 
-    // long double d_money = (int)round(d_money);
-    money = elektricity * Uniform(400, 500);
-
+    money = elektricity * Uniform(400, 500); /// 1200 - 750; +-50 zaokrouhleni
 
     double d_emissions = elektricity * Uniform(760, 900);
     emissions = emissions + (int)round(d_emissions);
-
-
 
 }
 
@@ -128,7 +135,7 @@ int wind_power_plant(int time_to_end)
 {
     double d_time_to_live = Uniform(18, 25);
     int time_to_live = (int)round(d_time_to_live);
-    cout << time_to_live << endl << endl;
+    //cout << time_to_live << endl << endl;
     int el = 0;
     for(int i = 0; i < time_to_live; i++)
     {
@@ -137,14 +144,16 @@ int wind_power_plant(int time_to_end)
             break;
         }
 
-        double d_e = Normal(70, 1);/// 10 elektraren
+        double years_hours = 24 * 365;
+        double productive_hours = years_hours * 0.26; /// prumerna rocni vyuzitelnost
+        double power_plant_production = productive_hours * 0.03;/// větrná farma = 30 MW
+        double d_e = Normal(power_plant_production, 1);
         unsigned int e = (int)round(d_e);
         el = el + e;
-        cout << el << endl;
 
         money = money - 40000;
     }
-    cout << endl;
+
     return el;
 }
 
@@ -159,23 +168,25 @@ void wind_work() {
         }
 
         unsigned int el = wind_power_plant(years - i);
-        cout << elektricity << endl;
+
         elektricity = elektricity + el;
 
-
-        cout << elektricity << endl;
     }
-    cout << endl;
-    cout << elektricity << endl;
 
+    wind_elektricity = elektricity;
 
-    double d_money = elektricity * Uniform(1100, 1300);
+    double d_money = elektricity * Uniform(1150, 1250);
     money = money + (int)round(d_money);
 
     money = money - Uniform(1050000, 1200000) * wind;
+    wind_money = money;
 
-    double d_emissions = elektricity * Uniform(10, 20);
-    emissions = (int)round(d_emissions);
+
+//    double d_emissions = elektricity * Uniform(10, 20);
+//    emissions = (int)round(d_emissions);
+    emissions = 241850 * wind;
+
+    wind_emissions = emissions;
 
 }
 
@@ -183,11 +194,28 @@ void wind_work() {
 int main(int argc, char *argv[]) {
     parse_params(argc, argv);
     RandomSeed(time(NULL));
-    coal_work();
     wind_work();
+    coal_work();
+
 
     cout << "celkové množství vyprodukované elektřiny = " << elektricity << "GWh" << endl;
     cout << "celkov zisk = " << money  << " tisíc Kč" << endl;
-    cout << "celkové množství CO2 = " << emissions  << "kg" << endl;
+    cout << "celkové množství CO2 = " << emissions  << "kg" << endl << endl;
+
+    cout << "celkové množství elektřiny vyprodukované větrnými elektrárnami = "
+         << wind_elektricity << "GWh"<< endl;
+    cout << "celkové zisk větrnými elektrárnami = "
+         << wind_money << " tisíc Kč" << endl;
+    cout << "celkové množství CO2 vyprodukované větrnými elektrárnami = "
+         <<wind_emissions << "kg" << endl <<endl;
+
+    cout << "celkové množství elektřiny vyprodukované uhelnými elektrárnami = "
+    << elektricity - wind_elektricity << "GWh"<< endl;
+    cout << "celkové zisk uhelnými elektrárnami = "
+    << money - wind_money << " tisíc Kč" << endl;
+    cout << "celkové množství CO2 vyprodukované uhelnými elektrárnami = "
+    << emissions - wind_emissions << "kg" << endl;
+
+
     return 0;
 }
