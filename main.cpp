@@ -1,7 +1,7 @@
 /**
  * VUT FIT IMS project
- * Uhlíková stopa v energetice a teplárenství
- * @author xsladk08 David Sladký
+ * Uhlikova stopa v energetice a teplarenstvi
+ * @author xsladk08 David Sladky
  * @author xandrl09 Ondřej Andrla
  */
 
@@ -195,20 +195,20 @@ int main(int argc, char *argv[]) {
     coal_work();
 
     cout << "Total amount of produced electricity = " << elektricity << "GWh" << endl;
-    cout << "Total profit = " << money  << " thousand Kc" << endl;
+    cout << "Total profit = " << money  << " thousand CZK" << endl;
     cout << "Total amount of CO2 = " << emissions  << "kg" << endl << endl;
 
     cout << "Total amount of electricity produced by wind turbines = "
          << wind_elektricity << "GWh"<< endl;
     cout << "Total profit of wind turbines = "
-         << wind_money << " tisíc Kč" << endl;
+         << wind_money << " tisíc Kc" << endl;
     cout << "Total CO2 produced by wind turbines = "
          <<wind_emissions << "kg" << endl <<endl;
 
     cout << "Total amount of electricity produced by coal power plants = "
     << elektricity - wind_elektricity << "GWh"<< endl;
     cout << "Total profit of coal power plants = "
-    << money - wind_money << " tisíc Kč" << endl;
+    << money - wind_money << " thousand CZK" << endl;
     cout << "Total CO2 produced by coal power plants = "
     << emissions - wind_emissions << "kg" << endl;
 
